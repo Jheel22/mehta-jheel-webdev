@@ -9,7 +9,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
-
+var blog = require('./lectures/angular/app');
+blog(app)
 var port = process.env.PORT || 3000;
 
 app.listen(port);
