@@ -46,7 +46,8 @@ md-card{
     opacity: 0.9;
 }
 .head-back{
-    background-color: cyan;
+    background-color: darkblue;
+    color: white;
 }
 .text-center{
     text-align: center;
@@ -56,4 +57,16 @@ md-card{
 }
 section{
     padding-bottom: 0px;
+}
+.glyco-font{
+    font-size: 25px;
+}
+.navbar-custom .navbar-brand{
+    color: white;
+}
+.back-style{
+    font-weight: bolder;
+    font-size: 25px;
+    padding-top: 8px;
+    color: white;
 }
