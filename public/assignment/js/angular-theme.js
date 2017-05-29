@@ -1,5 +1,5 @@
 angular
-    .module('firstApplication', ['ngMaterial'])
+    .module('WAM')
     .controller('themeController', themeController)
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('customTheme')

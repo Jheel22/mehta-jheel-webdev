@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                New Widget
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-xs-12">
+
+            <label for="name">Widget Type</label>
+            <input class="form-control"
+                   ng-model="widget.widgetType"
+
+                   id="name"/>
+            <label for="size">Width</label>
+            <select id="size" class="form-control" ng-model="widget.width">
+                <option value="10%">10%</option>
+                <option value="20%">20%</option>
+                <option value="30%">30%</option>
+                <option value="40%">40%</option>
+                <option value="50%">50%</option>
+                <option value="60%">60%</option>
+                <option value="70%">70%</option>
+                <option value="80%">80%</option>
+                <option value="90%">90%</option>
+                <option value="100%">100%</option>
+
+            </select>
+            <label for="description">URL</label>
+            <input id="description"
+                   ng-model="widget.url"
+                   class="form-control"/>
+            <label for="file">Upload</label>
+            <input id="file" multiple type="file" class="form-control"/>
+            <a href=""
+               class="btn btn-block btn-success">Upload</a>
+            <a ng-click="model.createWidget(widget)"
+               class="btn btn-block btn-success">
+                Create
+            </a>
+        </div>
+    </div>
+
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
