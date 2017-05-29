@@ -37,10 +37,30 @@
                 return widget._id === widgetId;
             });
         }
-        function updateWidget(widgetId, widget) {
+        function updateWidget(widgetId, widget,type) {
             for (var u in websites) {
                 var mywidget = widgets[u];
-
+if(type==='heading')
+{
+    if (mywidget._id === widgetId) {
+        mywidget.text=widget.text;
+        mywidget.size=widget.size;
+    }
+}
+                if(type==='image')
+                {
+                    if (mywidget._id === widgetId) {
+                        mywidget.url=widget.url;
+                        mywidget.width=widget.width;
+                    }
+                }
+                if(type==='youtube')
+                {
+                    if (mywidget._id === widgetId) {
+                        mywidget.url=widget.url;
+                        mywidget.width=widget.width;
+                    }
+                }
             }
         }
 

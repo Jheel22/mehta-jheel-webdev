@@ -23,8 +23,8 @@
             widgetService.deleteWidget(widgetId);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
         }
-        function updateWidget(widget) {
-            widgetService.updateWidget(model.widgetId,widget);
+        function updateWidget(widget,type) {
+            widgetService.updateWidget(model.widgetId,widget,type);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
         }
     }
