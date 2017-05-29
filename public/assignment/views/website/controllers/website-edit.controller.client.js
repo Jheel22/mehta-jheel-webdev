@@ -14,7 +14,7 @@
         model.updateWebsite = updateWebsite;
         function init() {
             model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+            model.website = angular.copy(websiteService.findWebsiteById(model.websiteId));
         }
         init();
 
@@ -23,9 +23,8 @@
             $location.url('/user/'+model.userId+'/website');
         }
 
-        function updateWebsite(website) {
-            websiteService.updateWebsite(model.websiteId,website);
-            console.log(website);
+        function updateWebsite() {
+            websiteService.updateWebsite(model.websiteId,model.website);
             $location.url('/user/'+model.userId+'/website');
         }
     }

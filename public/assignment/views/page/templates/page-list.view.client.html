@@ -1,6 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
             <a class="navbar-brand" href="#">
                 Pages
             </a>
@@ -54,6 +57,13 @@
                     <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item" ng-if="!model.pages || model.pages.length == 0">
+            <div class="row">
+                <div class="col-xs-12">
+                    No Pages to show
                 </div>
             </div>
         </li>

@@ -15,7 +15,7 @@
         model.deleteWidget = deleteWidget;
         model.updateWidget = updateWidget;
         function init() {
-            model.widget = widgetService.findWidgetById(model.widgetId);
+            model.widget = angular.copy(widgetService.findWidgetById(model.widgetId));
         }
         init();
 
@@ -23,8 +23,8 @@
             widgetService.deleteWidget(widgetId);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
         }
-        function updateWidget(widget,type) {
-            widgetService.updateWidget(model.widgetId,widget,type);
+        function updateWidget() {
+            widgetService.updateWidget(model.widgetId,model.widget);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
         }
     }

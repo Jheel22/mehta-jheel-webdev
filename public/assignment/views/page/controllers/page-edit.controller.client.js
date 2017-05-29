@@ -15,7 +15,7 @@
         model.updatePage = updatePage;
         function init() {
             model.pages = pageService.findPageByWebsiteId(model.websiteId);
-            model.page = pageService.findPageById(model.pageId);
+            model.page =angular.copy(pageService.findPageById(model.pageId));
         }
         init();
 
@@ -23,8 +23,8 @@
             pageService.deletePage(pageId);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
         }
-        function updatePage(page) {
-            pageService.updatePage(model.pageId,page);
+        function updatePage() {
+            pageService.updatePage(model.pageId,model.page);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
         }
 

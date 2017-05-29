@@ -36,13 +36,9 @@ this.updateWebsite=updateWebsite;
             });
         }
         function updateWebsite(websiteId, website) {
-            for (var u in websites) {
-                var mywebsite = websites[u];
-                if (mywebsite._id === websiteId) {
-                    mywebsite.name=website.name;
-                    mywebsite.description=website.description;
-                }
-            }
+            var wid = findWebsiteById(websiteId);
+            var index = websites.indexOf(wid);
+            websites[index] = website;
         }
         function findAllWebsitesForUser(userId) {
             var results = [];

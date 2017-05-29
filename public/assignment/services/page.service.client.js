@@ -42,13 +42,9 @@
             return results;
         }
         function updatePage(pageId, page) {
-            for (var u in pages) {
-                var mypage = pages[u];
-                if (mypage._id === pageId) {
-                    mypage.name=page.name;
-                    mypage.description=page.description;
-                }
-            }
+            var pid = findPageById(pageId);
+            var index = pages.indexOf(pid);
+            pages[index] = page;
         }
 
 

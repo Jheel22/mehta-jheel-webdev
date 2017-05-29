@@ -8,7 +8,7 @@
         this.findWidgetById = findWidgetById;
         this.deleteWidget = deleteWidget;
         this.createWidget = createWidget;
-
+        this.updateWidget = updateWidget;
         var widgets = [
             { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
             { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -37,31 +37,10 @@
                 return widget._id === widgetId;
             });
         }
-        function updateWidget(widgetId, widget,type) {
-            for (var u in websites) {
-                var mywidget = widgets[u];
-if(type==='heading')
-{
-    if (mywidget._id === widgetId) {
-        mywidget.text=widget.text;
-        mywidget.size=widget.size;
-    }
-}
-                if(type==='image')
-                {
-                    if (mywidget._id === widgetId) {
-                        mywidget.url=widget.url;
-                        mywidget.width=widget.width;
-                    }
-                }
-                if(type==='youtube')
-                {
-                    if (mywidget._id === widgetId) {
-                        mywidget.url=widget.url;
-                        mywidget.width=widget.width;
-                    }
-                }
-            }
+        function updateWidget(widgetId, widget) {
+            var wid = findWidgetById(widgetId);
+            var index = widgets.indexOf(wid);
+            widgets[index] = widget;
         }
 
         function findWidgetsByPageId(pageId) {
