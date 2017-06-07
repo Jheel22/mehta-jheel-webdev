@@ -24,6 +24,7 @@ function uploadImage(req, res) {
 
     widget = getWidgetById(widgetId);
     widget.url = '/assignment/uploads/' + filename;
+
     var callbackUrl   = "/assignment/index.html#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId+"/IMAGE";
 
     res.redirect(callbackUrl);
