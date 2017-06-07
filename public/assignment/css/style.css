@@ -70,3 +70,25 @@ body {
     padding: 5px;
     border-bottom-left-radius: 10px;
 }
+
+.wbd-page-content {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.wbd-page-content .btn-primary,
+.wbd-page-content .btn-danger {
+    margin-top: 10px;
+}
+
+.wbd-page-content .list-group .list-inline {
+    margin-top: 5px;
+}
+
+.wbd-page-content.container {
+    margin-left: 16px;
+}
+.wbd-page-content ul {
+    list-style-type: none;
+    padding-left: 0px;
+}

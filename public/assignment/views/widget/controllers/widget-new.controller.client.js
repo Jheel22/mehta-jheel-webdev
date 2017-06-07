@@ -15,9 +15,14 @@
 
 
         function createWidget(widget) {
+            widgetService
+                            .createWidget(model.pageId,widget)
+                .then(function (user) {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+                });
            // page.websiteId = model.websiteId;
-            widgetService.createWidget(model.pageId,widget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+           // widgetService.createWidget(model.pageId,widget);
+           // $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
         }
     }
 })();

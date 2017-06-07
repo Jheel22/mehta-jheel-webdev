@@ -37,7 +37,10 @@
     <input class="form-control"
            ng-model="model.widget.url"
            id="url"/>
-
+    <a ng-click="model.updateWidget(model.widget)"
+       class="btn btn-block btn-danger">
+        Update
+    </a>
     <a ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
 
 </div>

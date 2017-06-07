@@ -10,9 +10,14 @@
         model.websiteId = $routeParams.websiteId;
         //console.log(model.userId, model.websiteId);
         function init() {
-            model.pages = pageService.findPageByWebsiteId(model.websiteId);
+            pageService.findPageByWebsiteId(model.websiteId)
+                .then(renderPages);
+            /*model.pages = pageService.findPageByWebsiteId(model.websiteId);*/
             //console.log("LENGTH : " + model.pages.length);
         }
         init();
+        function renderPages(pages) {
+            model.pages = pages;
+        }
     }
 })();

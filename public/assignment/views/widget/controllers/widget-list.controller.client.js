@@ -10,10 +10,15 @@
         model.websiteId = $routeParams.websiteId;
         model.pageId=$routeParams.pageId;
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService.findWidgetsByPageId(model.pageId)
+                .then(renderWidgets);
+            //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
             //console.log("LENGTH : " + model.pages.length);
         }
         init();
+        function renderWidgets(widgets) {
+            model.widgets = widgets;
+        }
 
 
 
@@ -22,6 +27,20 @@
        model.trust = trust;
           model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
           model.widgetUrl = widgetUrl;
+        model.widgetSort = widgetSort;
+
+        function widgetSort (from, to) {
+
+            if (from === to) { return; }
+
+            widgetService.sortWidgets(model.pageId, from, to)
+                .then(
+                    null,
+                    function (response) {
+                        model.widgets = angular.copy(model.widgets);
+                    }
+                );
+        }
 
         function widgetUrl(widget) {
             var url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'.view.client.html';

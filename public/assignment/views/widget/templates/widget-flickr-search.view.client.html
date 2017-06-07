@@ -5,9 +5,8 @@
             <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="navbar-brand" href="#">
-                Image Editor
-            </a>
+            <a class="navbar-brand" href="">
+                Search Flickr            </a>
             <p class="navbar-text pull-right">
                 <a ng-click="model.updateWidget()" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
@@ -23,39 +22,26 @@
 </nav>
 
 <div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.searchPhotos(searchText)"
+               class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
 
-    <label for="name">Name</label>
-    <input class="form-control"
-           ng-model="model.widget.widgetType"
-           id="name"/>
+    <div class="row">
+        <div class="col-xs-4" ng-repeat="photo in model.photos.photo">
+            <img ng-click="model.selectPhoto(photo)"
+                 ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+        </div>
+    </div>
 
-    <label for="text">Width</label>
-    <input class="form-control"
-           ng-model="model.widget.width"
-           id="text"/>
-    <label for="url">URL</label>
-    <input class="form-control"
-           ng-model="model.widget.url"
-           id="url"/>
-
-    <a class="btn btn-info btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search">
-        Search
-    </a>
-    <form action="/api/assignment/upload"   method="post" enctype="multipart/form-data">
-        <input  name="myFile"    type="file" class="form-control"/>
-        <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
-        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
-        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
-        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
-        <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
-        <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
-    </form>
-
-    <a ng-click="model.updateWidget(model.widget)"
-       class="btn btn-block btn-danger">
-        Update
-    </a>
-    <a ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
+    {{model.photos}}
 
 </div>
 
@@ -85,3 +71,20 @@
         </div>
     </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

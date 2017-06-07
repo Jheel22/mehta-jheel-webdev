@@ -8,7 +8,7 @@
                 Edit Website
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWebsite()" class="navbar-link">
+                <a ng-click="model.updateWebsite(model.website)" class="navbar-link">
                     <span class="glyphicon glyphicon-check"></span>
                 </a>
                 <a href="#!/login" class="navbar-link">
@@ -66,6 +66,10 @@
                       placeholder="So big it is its own country"
                       class="form-control"></textarea>
 
+            <a ng-click="model.updateWebsite(model.website)"
+               class="btn btn-block btn-danger">
+                Update
+            </a>
             <a ng-click="model.deleteWebsite(model.websiteId)"
                class="btn btn-block btn-danger">
                 Delete

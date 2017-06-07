@@ -65,7 +65,10 @@
                       ng-model="model.page.description"
                       placeholder="So big it is its own country"
                       class="form-control"></textarea>
-
+            <a ng-click="model.updatePage(model.page)"
+               class="btn btn-block btn-danger">
+                Update
+            </a>
             <a ng-click="model.deletePage(model.pageId)"
                class="btn btn-block btn-danger">
                 Delete

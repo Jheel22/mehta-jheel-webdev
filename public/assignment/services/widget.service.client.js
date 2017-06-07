@@ -3,48 +3,76 @@
         .module('WAM')
         .service('widgetService', widgetService);
 
-    function widgetService() {
-        this.findWidgetsByPageId = findWidgetsByPageId;
-        this.findWidgetById = findWidgetById;
-        this.deleteWidget = deleteWidget;
-        this.createWidget = createWidget;
-        this.updateWidget = updateWidget;
-        var widgets = [
-            { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-            { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/400/200/"},
-            { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": '<p>Today we got <a href="http://io9.gizmodo.com/the-new-game-of-thrones-trailer-is-here-and-everyone-i-1795509917" target="_blank" rel="noopener">our first good look</a> at <em>Game of Thrones</em>’ seventh season, and boy howdy does it look like we’re in for some dark times ahead. But while the trailer is suitably cryptic, if you’ve been paying close attention to <a href="http://io9.gizmodo.com/everything-we-know-about-game-of-thrones-seventh-season-1788588295" target="_blank" rel="noopener">the rumors</a> surrounding this penultimate season, it paints an intriguing picture of the battles…<span class="read-more-placeholder"></span></p>'},
-            { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                "url": "https://youtu.be/AM2Ivdi9c4E" },
-            { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-        ];
+    function widgetService($http) {
+        var api= {
+            findWidgetsByPageId: findWidgetsByPageId,
+        findWidgetById: findWidgetById,
+        deleteWidget: deleteWidget,
+        createWidget: createWidget,
+        updateWidget: updateWidget,
+            findWidgetByWidgetname:findWidgetByWidgetname,
+            sortWidgets:sortWidgets
+    }
+    return api;
 
         function createWidget(pageId, widget) {
-            widget._id = (new Date()).getTime() + "";
+            var url = "/api/assignment/page/"+pageId+"/widget";
+            return $http.post(url, widget)
+                .then(function (response) {
+                    return response.data;
+                });
+            /*widget._id = (new Date()).getTime() + "";
             widget.pageId=pageId;
-            widgets.push(widget);
+            widgets.push(widget);*/
         }
 
         function deleteWidget(widgetId) {
-            var widget = findWidgetById(widgetId);
+            var url = "/api/assignment/widget/"+widgetId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+            /*var widget = findWidgetById(widgetId);
             var index = widgets.indexOf(widget);
-            widgets.splice(index, 1);
+            widgets.splice(index, 1);*/
         }
 
         function findWidgetById(widgetId) {
-            return widgets.find(function (widget) {
+            var url = "/api/assignment/widget/"+widgetId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+            /*return widgets.find(function (widget) {
                 return widget._id === widgetId;
-            });
+            });*/
         }
         function updateWidget(widgetId, widget) {
-            var wid = findWidgetById(widgetId);
+            var url = "/api/assignment/widget/"+widgetId;
+            return $http.put(url, widget)
+                .then(function (response) {
+                    return response.data;
+                });
+            /*var wid = findWidgetById(widgetId);
             var index = widgets.indexOf(wid);
-            widgets[index] = widget;
+            widgets[index] = widget;*/
+        }
+
+        function findWidgetByWidgetname(widget) {
+            var url = "/api/assignment/page/pageId/widget?widgetname=" + widget.name;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findWidgetsByPageId(pageId) {
-            var results = [];
+            var url = "/api/assignment/page/"+pageId+"/widget";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+            /*var results = [];
 
             for(var v in widgets) {
                 if(widgets[v].pageId === pageId) {
@@ -52,7 +80,16 @@
                 }
             }
 
-            return results;
+            return results;*/
+        }
+
+        function sortWidgets(pageId, startIndex, endIndex) {
+            var url = '/api/assignment/page/' + pageId + '/widget?initial=' + startIndex + "&final=" + endIndex;
+
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();
