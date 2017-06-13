@@ -9,8 +9,8 @@
                 Heading Editor
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWidget()" class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
+                <a href="#!/login" class="navbar-link">
+                    <span class="glyphicon glyphicon-log-out"></span>
                 </a>
             </p>
         </div>
@@ -21,7 +21,7 @@
 
     <label for="name">Name</label>
     <input class="form-control"
-           ng-model="model.widget.widgetType"
+           ng-model="model.widget.type"
            id="name"/>
 
     <label for="text">Text</label>
@@ -30,19 +30,19 @@
            id="text"/>
 
     <label for="size">Size</label>
-    <select id="size" class="form-control">
-        <option>1 (X-Large)</option>
-        <option>2 (Larger)</option>
-        <option>3 (Large)</option>
-        <option>4 (Medium)</option>
-        <option>5 (Small)</option>
-        <option>6 (Smallest)</option>
+    <select id="size" ng-model="model.widget.size" class="form-control">
+        <option value="1">1 (X-Large)</option>
+        <option value="2">2 (Larger)</option>
+        <option value="3">3 (Large)</option>
+        <option value="4">4 (Medium)</option>
+        <option value="5">5 (Small)</option>
+        <option value="6">6 (Smallest)</option>
     </select>
-    <a ng-click="model.updateWidget(model.widget)"
+    <a ng-click="model.updateWidget()"
        class="btn btn-block btn-danger">
         Update
     </a>
-    <a ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
+    <a ng-click="model.deleteWidget()" class="btn btn-block btn-danger">Delete</a>
 
 </div>
 

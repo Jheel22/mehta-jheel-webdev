@@ -23,7 +23,7 @@
 
     <label for="name">Name</label>
     <input class="form-control"
-           ng-model="model.widget.widgetType"
+           ng-model="model.widget.type"
            id="name"/>
 
     <label for="text">Width</label>
@@ -34,11 +34,11 @@
     <input class="form-control"
            ng-model="model.widget.url"
            id="url"/>
-    <a ng-click="model.updateWidget(model.widget)"
+    <a ng-click="model.updateWidget()"
        class="btn btn-block btn-danger">
         Update
     </a>
-    <a ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
+    <a ng-click="model.deleteWidget()" class="btn btn-block btn-danger">Delete</a>
 
 </div>
 

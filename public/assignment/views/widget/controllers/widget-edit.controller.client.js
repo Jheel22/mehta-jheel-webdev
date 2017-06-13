@@ -15,24 +15,19 @@
         model.deleteWidget = deleteWidget;
         model.updateWidget = updateWidget;
         function init() {
-            model.widget = angular.copy(widgetService
-                .findWidgetById(model.widgetId)
-                .then(renderWidget, WidgetError));
+            widgetService.findWidgetById(model.widgetId)
+                .then(
+                    function (response) {
+                        model.widget = response.data;
+                    }
+                );
             //model.widget = angular.copy(widgetService.findWidgetById(model.widgetId));
         }
         init();
 
-        function renderWidget (widget) {
-            model.widget = widget;
-        }
-
-        function WidgetError(widget) {
-            model.error = "widget not found";
-        }
-
-        function deleteWidget(widgetId) {
+        function deleteWidget() {
             widgetService
-                .deleteWidget(widgetId)
+                .deleteWidget(model.widgetId)
                 .then(function () {
                     $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
                 }, function () {
@@ -42,6 +37,7 @@
             //$location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
         }
         function updateWidget() {
+            console.log(model.widget);
             widgetService
                 .updateWidget(model.widgetId,model.widget)
                 .then(function () {

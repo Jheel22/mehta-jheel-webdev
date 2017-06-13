@@ -33,21 +33,15 @@
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
-            if(model.widgetId===undefined)
-            {
-                //model.widget={};
-                //model.widget.url=url;
-            }
-            else
-            {
+
                 model.widget.url=url;
                 widgetService
                     .updateWidget(model.widgetId,model.widget)
                     .then(function () {
-                        $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+model.widgetId+'/IMAGE/');
+                        $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+model.widgetId);
                     });
 
-            }
+
 
 
         }

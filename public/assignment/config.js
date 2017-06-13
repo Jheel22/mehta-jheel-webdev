@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('WAM',['ngRoute', 'textAngular'])
         .config(configuration);
 
     function configuration($routeProvider) {
@@ -63,7 +63,12 @@
                 controller: 'widgetNewController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new/header', {
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
+                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
+                controller: 'widgetEditController',
+                controllerAs: 'model'
+            })
+            /*.when('/user/:userId/website/:websiteId/page/:pageId/widget/new/header', {
                 templateUrl: 'views/widget/templates/widget-heading-new.view.client.html',
                 controller: 'widgetNewController',
                 controllerAs: 'model'
@@ -92,13 +97,8 @@
                 templateUrl: 'views/widget/templates/widget-image-edit.view.client.html',
                 controller: 'widgetEditController',
                 controllerAs: 'model'
-            })
+            })*/
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/search', {
-                templateUrl: 'views/widget/templates/widget-flickr-search.view.client.html',
-                controller: 'FlickrImageSearchController',
-                controllerAs: 'model'
-            })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/search', {
                 templateUrl: 'views/widget/templates/widget-flickr-search.view.client.html',
                 controller: 'FlickrImageSearchController',
                 controllerAs: 'model'

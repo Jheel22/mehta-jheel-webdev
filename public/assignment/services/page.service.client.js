@@ -24,11 +24,11 @@
                 });
         }
 
-        function deletePage(pageId) {
+        function deletePage(websiteId,pageId) {
             /*var page = findPageById(pageId);
              var index = pages.indexOf(page);
              pages.splice(index, 1);*/
-            var url = "/api/assignment/page/"+pageId;
+            var url = "/api/assignment/website/"+websiteId+"/page/"+pageId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;

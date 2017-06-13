@@ -92,3 +92,8 @@ body {
     list-style-type: none;
     padding-left: 0px;
 }
+
+.wbd-widget-html-container {
+    margin: 10px;
+    margin-top: 50px;
+}

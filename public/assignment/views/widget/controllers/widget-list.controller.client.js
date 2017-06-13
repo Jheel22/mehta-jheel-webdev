@@ -11,14 +11,16 @@
         model.pageId=$routeParams.pageId;
         function init() {
             widgetService.findWidgetsByPageId(model.pageId)
-                .then(renderWidgets);
+                .then(
+                    function (response) {
+
+                        model.widgets = response.data;
+                    }
+                );
             //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
             //console.log("LENGTH : " + model.pages.length);
         }
         init();
-        function renderWidgets(widgets) {
-            model.widgets = widgets;
-        }
 
 
 
@@ -43,7 +45,7 @@
         }
 
         function widgetUrl(widget) {
-            var url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'.view.client.html';
+            var url = 'views/widget/templates/widget-'+widget.type.toLowerCase()+'.view.client.html';
             return url;
         }
 
