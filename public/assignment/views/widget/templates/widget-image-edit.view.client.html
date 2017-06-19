@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <a class="navbar-brand" href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand" href="">
@@ -10,7 +10,7 @@
             </a>
             <p class="navbar-text pull-right">
 
-                <a href="#!/login" class="navbar-link">
+                <a ng-click="model.logout()" class="navbar-link">
                     <span class="glyphicon glyphicon-log-out"></span>
                 </a>
 
@@ -20,7 +20,9 @@
 </nav>
 
 <div class="container-fluid">
-
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
     <label for="name">Name</label>
     <input class="form-control"
            ng-model="model.widget.type"
@@ -35,7 +37,7 @@
            ng-model="model.widget.url"
            id="url"/>
 
-    <a class="btn btn-info btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search">
+    <a class="btn btn-info btn-block" href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search">
         Search
     </a>
     <form action="/api/assignment/upload"   method="post" enctype="multipart/form-data">

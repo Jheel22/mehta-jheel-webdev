@@ -33,11 +33,13 @@
                             password: password
                         };
                         return userService
-                            .createUser(newUser);
+                            .register(newUser);
+
+                           // .createUser(newUser);
                     }
                 )
                 .then(function (user) {
-                    $location.url('/user/' + user._id);
+                    $location.url('/profile');
                 });
 
             // if(found !== null) {

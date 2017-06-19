@@ -5,12 +5,14 @@
     
     function widgetNewController($routeParams,
                                    $location,
-                                   widgetService) {
+                                 currentUser,
+                                   widgetService,userService) {
         var model = this;
         model.createWidget = createWidget;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;//model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
+        model.logout=logout;
         function init() {
 
 
@@ -18,7 +20,13 @@
             fetchWidgetTypes();
         }
         init();
-
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
         function fetchWidgetTypes () {
             widgetService.getWidgetTypes()
                 .then(
@@ -34,7 +42,7 @@
                             .createWidget(model.pageId,{type: widgetType})
                 .then(function (response) {
                     var widget = response.data;
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+ widget._id);
+                    $location.url('/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+ widget._id);
                 });
            // page.websiteId = model.websiteId;
            // widgetService.createWidget(model.pageId,widget);

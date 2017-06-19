@@ -5,13 +5,15 @@
     
     function pageNewController($routeParams,
                                    $location,
-                                   pageService) {
+                               currentUser,
+                                   pageService,userService) {
         var model = this;
-
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
+        //model.userId = $routeParams['userId'];
         model.websiteId = $routeParams.websiteId;
         model.pageId=$routeParams.pageId;
         model.createPage = createPage;
+        model.logout=logout;
 
         function init() {
             pageService
@@ -25,8 +27,23 @@
         function renderPages(pages) {
             model.pages = pages;
         }
-
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
         function createPage(page) {
+            if(typeof page === 'undefined')
+            {
+                model.error = 'Page name is required';
+                return;
+            }
+            if(page.name === null || page.name === '' || typeof page.name === 'undefined') {
+                model.error = 'Page name is required';
+                return;
+            }
             pageService
                 .findPageByPagename(page)
                 .then(
@@ -39,7 +56,7 @@
                     }
                 )
                 .then(function (user) {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                    $location.url('/website/'+model.websiteId+'/page');
                 });
            // page.websiteId = model.websiteId;
             //pageService.createPage(model.websiteId,page);

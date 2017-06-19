@@ -2,14 +2,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
+            <a class="navbar-brand" href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand" href="">
                 Search Flickr            </a>
             <p class="navbar-text pull-right">
 
-                <a href="#!/login" class="navbar-link">
+                <a ng-click="model.logout()" class="navbar-link">
                     <span class="glyphicon glyphicon-log-out"></span>
                 </a>
 

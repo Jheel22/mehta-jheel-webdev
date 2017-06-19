@@ -5,12 +5,13 @@
     
     function websiteNewController($routeParams,
                                    $location,
-                                   websiteService) {
+                                  currentUser,
+                                   websiteService,userService) {
         var model = this;
-
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
+        //model.userId = $routeParams['userId'];
         model.createWebsite = createWebsite;
-
+        model.logout=logout;
         function init() {
            /* model.websites = websiteService.findAllWebsitesForUser(model.userId);*/
             websiteService
@@ -18,7 +19,13 @@
                 .then(renderWebsites);
         }
         init();
-
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
         function renderWebsites(websites) {
             model.websites = websites;
         }
@@ -27,7 +34,15 @@
            /* website.developerId = model.userId;
             websiteService.createWebsite(website);
             $location.url('/user/'+model.userId+'/website');*/
-
+           if(typeof website === 'undefined')
+           {
+               model.error = 'Website name is required';
+               return;
+           }
+            if(website.name === null || website.name === '' || typeof website.name === 'undefined') {
+                model.error = 'Website name is required';
+                return;
+            }
             websiteService
                 .findWebsiteByWebsitename(website)
                 .then(
@@ -40,7 +55,7 @@
                     }
                 )
                 .then(function (user) {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/website');
                 });
         }
     }

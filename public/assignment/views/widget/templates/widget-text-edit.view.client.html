@@ -2,15 +2,15 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <a class="navbar-brand" href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand" href="">
                 Text Editor
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWidget()" class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
+                <a ng-click="model.logout()" class="navbar-link">
+                    <span class="glyphicon glyphicon-log-out"></span>
                 </a>
             </p>
         </div>

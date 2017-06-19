@@ -5,15 +5,17 @@
     
     function widgetEditController($routeParams,
                                    $location,
-                                   widgetService) {
+                                  currentUser,
+                                   widgetService,userService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;//model.userId = $routeParams['userId'];
         model.websiteId = $routeParams.websiteId;
         model.pageId=$routeParams.pageId;
         model.widgetId=$routeParams.widgetId;
         model.deleteWidget = deleteWidget;
         model.updateWidget = updateWidget;
+        model.logout=logout;
         function init() {
             widgetService.findWidgetById(model.widgetId)
                 .then(
@@ -24,12 +26,18 @@
             //model.widget = angular.copy(widgetService.findWidgetById(model.widgetId));
         }
         init();
-
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
         function deleteWidget() {
             widgetService
                 .deleteWidget(model.widgetId)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
+                    $location.url('/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
                 }, function () {
                     model.error = "Unable to add page";
                 });
@@ -37,11 +45,11 @@
             //$location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
         }
         function updateWidget() {
-            console.log(model.widget);
+            //console.log(model.widget);
             widgetService
                 .updateWidget(model.widgetId,model.widget)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
+                    $location.url('/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');
                 })
             //widgetService.updateWidget(model.widgetId,model.widget);
             //$location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/');

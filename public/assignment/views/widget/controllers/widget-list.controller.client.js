@@ -4,11 +4,14 @@
         .controller('widgetListController', widgetListController);
 
     function widgetListController($sce,$routeParams,
-                                  widgetService) {
+                                  currentUser,
+                                  $location,
+                                  widgetService,userService) {
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;//model.userId = $routeParams['userId'];
         model.websiteId = $routeParams.websiteId;
         model.pageId=$routeParams.pageId;
+        model.logout=logout;
         function init() {
             widgetService.findWidgetsByPageId(model.pageId)
                 .then(
@@ -22,7 +25,13 @@
         }
         init();
 
-
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
 
 
         //model.widgets = widgets;

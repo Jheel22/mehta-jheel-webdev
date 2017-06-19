@@ -5,15 +5,16 @@
 
     function FlickrImageSearchController($routeParams,
                                          $location,
-                                         FlickrService,widgetService) {
+                                         currentUser,
+                                         FlickrService,widgetService,userService) {
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;//model.userId = $routeParams['userId'];
         model.websiteId = $routeParams.websiteId;
         model.pageId=$routeParams.pageId;
         model.widgetId=$routeParams.widgetId;
         model.searchPhotos = searchPhotos;
         model.selectPhoto = selectPhoto;
-
+        model.logout=logout;
         function init() {
             model.widget = angular.copy(widgetService
                 .findWidgetById(model.widgetId)
@@ -21,7 +22,13 @@
             //model.widget = angular.copy(widgetService.findWidgetById(model.widgetId));
         }
         init();
-
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
         function renderWidget (widget) {
             model.widget = widget;
         }
@@ -38,7 +45,7 @@
                 widgetService
                     .updateWidget(model.widgetId,model.widget)
                     .then(function () {
-                        $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+model.widgetId);
+                        $location.url('/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+model.widgetId);
                     });
 
 
