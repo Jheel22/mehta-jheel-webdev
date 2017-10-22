@@ -26,8 +26,9 @@
         //return result;
 
         //- Using an anonymous function:
-        document.getElementById("clickMe").onclick = function () {
+      //  document.getElementById("clickMe").onclick = function () {
             var product = result[0]+" "+result[1];
+            alert(product);
             var url = "http://svcs.ebay.com/services/search/FindingService/v1";
             url += "?OPERATION-NAME=findItemsByKeywords";
             url += "&SERVICE-VERSION=1.0.0";
@@ -41,7 +42,7 @@
             s = document.createElement('script'); // create script element
             s.src = url;
             document.body.appendChild(s);
-        };
+       // };
     }
     // Parse the response and build an HTML table to display search results
     function _cb_findItemsByKeywords(root) {
