@@ -14,12 +14,10 @@
         var query = location.search.substr(1);
         var result = {};
         query.split("?").forEach(function(part) {
-            alert("jheel");
             var item = part.split("=");
             result[item[0]] = decodeURIComponent(item[1]);
             alert(result[item[0]]);
         });
-        alert(result);
         return result;
     }
     //- Using an anonymous function:
