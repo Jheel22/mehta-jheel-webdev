@@ -14,9 +14,9 @@
         var query = location.search.substr(1);
         var result = {};
         var count=0;
-        var params=query.split("?")[1];
-        alert(params);
-        params.split("&").forEach(function(part) {
+        //var params=query.split("?")[1];
+        alert(query);
+        query.split("&").forEach(function(part) {
             var item = part.split("=");
             alert(item[1]);
             result[item[count]] = decodeURIComponent(item[1]);
