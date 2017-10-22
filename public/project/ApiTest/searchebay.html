@@ -17,12 +17,12 @@
         var params=query.split("?")[1];
         params.split("&").forEach(function(part) {
             var item = part.split("=");
-            result[count] = item[1];
-            alert(result[count]);
+            alert(item[1]);
+            result[item[count]] = decodeURIComponent(item[1]);
             count=count+1;
 
         });
-        alert(result[0]+" --- "+result[1]);
+        alert(result[item[0]]+" --- "+result[item[1]]);
         return result;
     }
     //- Using an anonymous function:
