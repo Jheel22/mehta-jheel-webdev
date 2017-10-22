@@ -13,16 +13,12 @@
 
         var query = location.search.substr(1);
         var result = {};
-        var count=0;
         var params=query.split("?")[1];
         params.split("&").forEach(function(part) {
             var item = part.split("=");
-            alert("kjdkjhdk");
-            result[item[count]] = decodeURIComponent(item[1]);
-            count=count+1;
-
+            result[item[part]] = decodeURIComponent(item[1]);
+            alert(result[item[part]]);
         });
-        //alert(result[item[0]]+" --- "+result[item[1]]);
         return result;
     }
     //- Using an anonymous function:
