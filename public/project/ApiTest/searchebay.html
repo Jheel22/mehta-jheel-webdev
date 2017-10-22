@@ -13,12 +13,11 @@
 
         var query = location.search.substr(1);
         var result = {};
+        alert(query);
         var params=query.split("?")[1];
         params.split("&").forEach(function(part) {
             var item = part.split("=");
-            alert("kjsdkjadk");
             result[item[0]] = decodeURIComponent(item[1]);
-            alert(result[item[0]]);
         });
         return result;
     }
