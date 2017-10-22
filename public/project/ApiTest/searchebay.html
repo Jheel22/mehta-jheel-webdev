@@ -15,9 +15,12 @@
         var result = {};
         var count=0;
         var params=query.split("?")[1];
+        alert(params);
         params.split("&").forEach(function(part) {
             var item = part.split("=");
+            alert(item[1]);
             result[item[count]] = decodeURIComponent(item[1]);
+            alert(result[item[count]]);
             count=count+1;
 
         });
