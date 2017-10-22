@@ -10,10 +10,11 @@
 <input id="clickMe" type="button" value="clickme" onclick="doFunction();" />
 <script>
     function getJsonFromUrl() {
-        alert("jheel");
+
         var query = location.search.substr(1);
         var result = {};
         query.split("?").forEach(function(part) {
+            alert("jheel");
             var item = part.split("=");
             result[item[0]] = decodeURIComponent(item[1]);
         });
