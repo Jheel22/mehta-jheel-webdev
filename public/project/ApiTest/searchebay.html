@@ -1,4 +1,4 @@
-<html>
+<html onload="getJsonFromUrl()">
 <head>
     <title>eBay Search Results</title>
     <style type="text/css">body { font-family: arial,sans-serif;} </style>
@@ -9,7 +9,16 @@
 <input id="title" class="form-control"/>
 <input id="clickMe" type="button" value="clickme" onclick="doFunction();" />
 <script>
-
+    function getJsonFromUrl() {
+        var query = location.search.substr(1);
+        var result = {};
+        query.split("&").forEach(function(part) {
+            var item = part.split("=");
+            result[item[0]] = decodeURIComponent(item[1]);
+        });
+        alert(result);
+        return result;
+    }
     //- Using an anonymous function:
     document.getElementById("clickMe").onclick = function () {
 var product=document.getElementById("title").value;
